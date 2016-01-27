@@ -1,0 +1,67 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 100%;
+  margin: 0 0;
+  padding: 0 0;
+}
+
+a {
+  color: #00B7FF;
+}
+.warp{
+  margin: 0 10px;
+}
+.warp .num{
+  height:40px;
+  line-height: 40px;
+  color: #565656;
+}
+.swiper-container{
+  width: 100%;
+  margin: 0 auto;
+}
+.swiper-container img{
+  width: 100%;
+}
+.swiper-pagination-bullet-active{
+  background-color: #fff;
+}
+.warp .author{
+  height: 50px;
+  line-height: 50px;
+  color: #4b4b4b;
+  float: right;
+}
+.content-warp{
+  clear: both;
+}
+.content-warp .date{
+  float: left;
+  width: 25%;
+  text-align: center;
+  margin-top:-8px;
+}
+.content-warp .date .day{
+  color: #3bc3f0;font-size: 45px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.content-warp .date .month{
+  color: #b4b4b4;font-size: 12px;
+}
+.content-warp .content{
+  float: right;
+  width: 67%;
+  background: #38c4f2;
+  color: #fff;
+  border-radius: 3px;
+  padding: 8px 6px;
+  line-height: 20px;
+  position: relative;
+}
+.content-warp .content .left{
+  border: 4px solid #fff;
+  border-right-color: #38c4f2;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -8px;
+}
