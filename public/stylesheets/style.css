@@ -65,3 +65,48 @@ a {
   position: absolute;
   left: -8px;
 }
+
+/*-------------------timeline----------------------*/
+.timeline{
+  overflow: hidden;
+  background: url("../images/bg.png");
+  padding: 20px 10px;
+}
+.timeline .article{
+  background: #fff;
+  padding: 5px 15px;
+  border:1px #ccc solid;
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 20px;
+}
+.timeline .article .time{
+  position: absolute;
+  border:solid 1px #a8a9a9;
+  color: rgb(102,102,102);
+  background: #fff;
+  border-radius: 20em;
+  padding: 5px 10px;
+  left: 50%;
+  margin-left: -50px;
+  top:-10px;
+  font-size: 12px;
+}
+.timeline .title{
+  height: 35px;
+  line-height: 35px;
+  font-size: 15px;
+  font-family: "微软雅黑";
+  font-weight: bold;
+  margin-top: 5px;
+}
+.timeline .author{
+  color:rgb(128,124,124);
+  font-size: 12px;
+  line-height: 24px;
+  margin-top: 10px;
+  font-family: "微软雅黑";
+}
+.timeline img{
+  width: 100%;
+}
