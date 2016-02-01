@@ -1,6 +1,8 @@
 var _ = require('lodash');
 var Article = require('./article.model');
-var formidable = require('formidable');
+var uuid = require('node-uuid');
+var fs = require('fs');
+var moment = require('moment');
 
 function handleError(res, statusCode) {
     statusCode = statusCode || 500;
@@ -47,9 +49,24 @@ function removeEntity(res) {
 
 var controller={};
 controller.create = function(req,res){
-    Article.createAsync(req.body)
-        .then(responseWithResult(res, 201))
-        .catch(handleError(res));
+    //接收前台POST过来的base64
+    var imgData = req.body.fileData;
+    //过滤data:URL
+    var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+    var dataBuffer = new Buffer(base64Data, 'base64');
+    var fileName = uuid.v1()+".png";
+    var imagePath = "public/upload/"+fileName;
+    req.body.pic = "/upload/"+fileName;
+    req.body.displayTime = moment().format("MMM DD,YYYY");
+    fs.writeFile(imagePath, dataBuffer, function(err) {
+        if(err){
+            res.send(err);
+        }else{
+            Article.createAsync(req.body)
+                .then(responseWithResult(res, 201))
+                .catch(handleError(res));
+        }
+    });
 
 }
 // Gets a list of Articles

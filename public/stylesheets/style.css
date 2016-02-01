@@ -4,11 +4,10 @@ body {
   margin: 0 auto;
   padding: 0 0;
   max-width: 640px;
+
 }
 
-a {
-  color: #00B7FF;
-}
+a,a:hover{ text-decoration:none; color:#333}
 .warp{
   margin: 0 10px;
 }
@@ -75,9 +74,10 @@ a {
 
 /*-------------------timeline----------------------*/
 .timeline{
-  overflow: hidden;
   background: url("../images/bg.png");
+  overflow: hidden;
   padding: 20px 10px;
+  min-height: 700px;
 }
 .timeline .article{
   background: #fff;

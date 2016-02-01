@@ -1,18 +1,23 @@
 <div class="warp">
-    <div class="num">VOL.1207</div>
+    <div class="num"></div>
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="/upload/1.jpg" alt=""/></div>
-            <div class="swiper-slide"><img src="/upload/2.jpg" alt=""/></div>
+            <div class="swiper-slide"><img src="{{pic}}" alt=""/></div>
         </div>
         <div class="swiper-pagination"></div>
     </div>
-    <div class="author">Suzy 作品</div>
+    <div class="author">{{author}} 作品</div>
     <div class="content-warp">
         <div class="date">
             <div class="day">21</div>
             <div class="month">Jan,2016</div>
         </div>
-        <div class="content"><div class="left"></div>去万达买花,西餐碟子,蜡烛,红酒...怕菜凉了手忙脚乱的把牛扒煎熟,不知道有没一点小惊喜呢</div>
+        <div class="content"><div class="left"></div>{{content}}</div>
     </div>
 </div>
+<script>
+    $(function(){
+        $(".day").html(moment({{createTime}}).format("DD"));
+        $(".month").html(moment({{createTime}}).format("MMM,YYYY"));
+    })
+</script>
