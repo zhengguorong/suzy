@@ -6,7 +6,7 @@ var Article = require('../api/article/article.model');
 
 //前台渲染路由
 router.get('/',function(req,res,next){
-  Article.findAsync({},null,{sort: '-1'})
+  Article.findAsync({},null,{sort: '-createTime'})
       .then(function(data){
         res.render('articlelist', { articles: data});
       })
