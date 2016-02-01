@@ -1,0 +1,49 @@
+<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+<link rel='stylesheet' href='/stylesheets/bootstrap-theme.min.css' />
+<div class="warp addArticle">
+<form>
+    <div class="form-group">
+        <label for="inputContent">内容：</label>
+        <textarea class="form-control" rows="3" id="inputContent"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="author">作者：</label>
+        <label class="radio-inline">
+            <input type="radio" name="inlineRadioOptions" id="nixuzhi" value="倪旭芝" checked> 倪旭芝
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="inlineRadioOptions" id="zhengguorong" value="郑国榕"> 郑国榕
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="picFile">选择图片</label>
+        <input type="file" id="picFile">
+    </div>
+    <button type="submit" class="btn btn-block btn-primary">保存</button>
+</form>
+</div>
+<script src="/javascripts/bootstrap.min.js"></script>
+
+<script>
+    var uploadIcon = function() {
+        var file = document.getElementById("picFile").files[0];
+        //判断类型是不是图片
+        if (!/image\/\w+/.test(file.type)) {
+            alert("请选择图像类型的文件");
+            return false;
+        }
+        if (!file) {
+            return;
+        }
+        lrz(file, {width: 640}, function (images) {
+            $.ajax({
+                type:"POST",
+                url:"/upload",
+                data:{fileData: images.base64,fileName: images.origin.name},
+                success:function(result){
+                    console.log(result);
+                }
+            })
+        });
+    }
+</script>
