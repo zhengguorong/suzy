@@ -18,13 +18,20 @@
         <label for="picFile">选择图片</label>
         <input type="file" id="picFile">
     </div>
-    <button onclick="uploadIcon()" class="btn btn-block btn-primary">保存</button>
+    <button onclick="uploadIcon()" id="savebtn" class="btn btn-block btn-primary">保存</button>
 </div>
 </div>
 
 
 <script>
+    var flag=true;
     var uploadIcon = function() {
+
+        if(!flag){
+            $("#savebtn").html("哎呦!在忙着上传啦,别乱点了...");
+            return;
+        }
+        $("#savebtn").html("正在上传...");
         var file = document.getElementById("picFile").files[0];
         var content = $("#inputContent").val();
         var author = $("input[name='author']:checked").val();
@@ -40,6 +47,7 @@
         if (!file) {
             return;
         }
+        flag=false;
         lrz(file, {width: 640}, function (images) {
             $.ajax({
                 type:"POST",
@@ -53,6 +61,10 @@
                     500:function(result){
                         alert("服务器异常");
                     }
+                },
+                complete:function(){
+                    console.log("请求完成");
+                    flag=true;
                 }
             })
         });
