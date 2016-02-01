@@ -79,6 +79,10 @@ a,a:hover{ text-decoration:none; color:#333}
   padding: 20px 10px;
   min-height: 700px;
 }
+.timeline .action{
+  margin-bottom: 20px;
+  overflow: hidden;
+}
 .timeline .article{
   background: #fff;
   padding: 5px 15px;
