@@ -2,6 +2,7 @@
     <div class="action">
         <div class="col-xs-6">
         <select class="form-control" id="curMon" onchange="getDataByMon()">
+            <option value="all">全部</option>
             <option value="2016-1-1">一月</option>
             <option value="2016-2-1">二月</option>
             <option value="2016-3-1">三月</option>
@@ -34,6 +35,10 @@
 <script>
     function getDataByMon(){
         var curSelected=$('#curMon option:selected').val();
+        if(curSelected=="all"){
+            location.href="/";
+            return;
+        }
         location.href="/mon/"+curSelected;
     }
 </script>
