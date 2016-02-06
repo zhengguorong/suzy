@@ -34,6 +34,8 @@ a,a:hover{ text-decoration:none; color:#333}
 }
 .content-warp{
   clear: both;
+  overflow: hidden;
+  margin-bottom: 40px;
 }
 .content-warp .date{
   float: left;
@@ -99,7 +101,7 @@ a,a:hover{ text-decoration:none; color:#333}
   border-radius: 20em;
   padding: 5px 10px;
   left: 50%;
-  margin-left: -50px;
+  margin-left: -45px;
   top:-10px;
   font-size: 12px;
 }

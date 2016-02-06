@@ -19,5 +19,7 @@
     $(function(){
         $(".day").html(moment({{createTime}}).format("DD"));
         $(".month").html(moment({{createTime}}).format("MMM,YYYY"));
+        console.log({{createTime}});
+        console.log(new Date({{createTime}}).getDay())
     })
 </script>
