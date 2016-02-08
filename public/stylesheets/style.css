@@ -93,6 +93,13 @@ a,a:hover{ text-decoration:none; color:#333}
   position: relative;
   margin-bottom: 20px;
 }
+.timeline .article .content{
+  font-size: 15px;
+  font-family: '微软雅黑';
+  line-height: 26px;
+  color: #000;
+  margin-top: 10px;
+}
 .timeline .article .time{
   position: absolute;
   border:solid 1px #a8a9a9;

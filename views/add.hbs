@@ -2,6 +2,10 @@
 <div class="container" style="width:100%">
 <div class="addArticle">
     <div class="form-group">
+        <label for="inputTitle">标题：</label>
+        <input type="text"  class="form-control" id="inputTitle" placeholder="请输入标题"/>
+    </div>
+    <div class="form-group">
         <label for="inputContent">内容：</label>
         <textarea class="form-control" rows="6" id="inputContent" placeholder="想说点什么呢..."></textarea>
     </div>
@@ -33,6 +37,7 @@
         }
         $("#savebtn").html("正在上传...");
         var file = document.getElementById("picFile").files[0];
+        var title = $("#inputTitle").val();
         var content = $("#inputContent").val();
         var author = $("input[name='author']:checked").val();
         if(!content||!file){
@@ -52,7 +57,7 @@
             $.ajax({
                 type:"POST",
                 url:"/api/article",
-                data:{fileData: images.base64,fileName: images.origin.name,content:content,author:author},
+                data:{fileData: images.base64,fileName: images.origin.name,content:content,author:author,title:title},
                 statusCode:{
                     201:function(result) {
                         alert("添加成功!");
