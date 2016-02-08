@@ -1,5 +1,5 @@
 <div class="warp">
-    <div class="num"></div>
+    <div class="num">VOL.0001</div>
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="{{pic}}" alt=""/></div>
@@ -19,7 +19,5 @@
     $(function(){
         $(".day").html(moment({{createTime}}).format("DD"));
         $(".month").html(moment({{createTime}}).format("MMM,YYYY"));
-        console.log({{createTime}});
-        console.log(new Date({{createTime}}).getDay())
     })
 </script>
