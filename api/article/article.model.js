@@ -7,7 +7,7 @@ var ArticleSchema = new mongoose.Schema({
     location:String,
     author:String,
     content:String,
-    createTime:String,
+    createTime:{ type: String, default: new Date().getTime() },
     displayTime:String,
 })
 module.exports = mongoose.model('Article',ArticleSchema);
