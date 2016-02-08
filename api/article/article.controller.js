@@ -58,7 +58,7 @@ controller.create = function(req,res){
     var imagePath = "public/upload/"+fileName;
     req.body.pic = "/upload/"+fileName;
     req.body.displayTime = moment().format("MMM DD,YYYY");
-
+    res.body.createTime = new Date().getTime();
     fs.writeFile(imagePath, dataBuffer, function(err) {
         if(err){
             res.send(err);
