@@ -1,0 +1,45 @@
+
+<div class="container" style="width:100%">
+<div class="addArticle">
+    <div class="form-group">
+        <label for="inputContent">内容：</label>
+        <textarea class="form-control" rows="6" id="inputContent" placeholder="想说点什么呢..."></textarea>
+    </div>
+    <div class="form-group">
+        <label for="author">作者：</label>
+        <label class="radio-inline">
+            <input type="radio" name="author" id="nixuzhi" value="zhi" checked> zhi
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="author" id="zhengguorong" value="rong"> rong
+        </label>
+    </div>
+    <button onclick="uploadIcon()" id="savebtn" class="btn btn-block btn-primary">保存</button>
+</div>
+</div>
+
+
+<script>
+    var href = window.location.href;
+    var pId=href.split("/")[4];
+    var uploadIcon = function() {
+        var content = $("#inputContent").val();
+        content = content.replace(/(\r\n|\n|\r)/gm, '<br>');
+        var author = $("input[name='author']:checked").val();
+        if(!content){
+            alert("请输入回复内容");
+            return;
+        }
+        $.ajax({
+            type:"POST",
+            url:"/api/reply/",
+            data:{pId:pId,content:content,author:author},
+            success:function(){
+                alert("添加成功")
+                history.go(-1);
+            }
+        })
+
+    }
+
+</script>

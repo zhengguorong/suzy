@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Article = require('../api/article/article.model');
+var Reply = require('../api/reply/reply.model');
 
 /* GET home page. */
 
@@ -23,13 +24,21 @@ router.get("/mon/:date",function(req,res,next){
 router.get('/detail/:id', function(req, res, next) {
   Article.findByIdAsync(req.params.id)
       .then(function(data){
-         res.render('detail', data);
+          Reply.findAsync({pId:req.params.id})
+              .then(function(replies){
+                  data["replies"]=replies||[];
+                  res.render('detail', data);
+              })
       })
 });
 router.get('/add',function(req,res,next){
   res.render('add');
 })
+router.get('/reply/:id',function(req,res,next){
+    res.render('reply');
+})
 //文章路由
 router.use('/api/article',require('../api/article'));
+router.use('/api/reply',require('../api/reply'));
 
 module.exports = router;

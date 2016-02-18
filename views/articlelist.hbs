@@ -1,26 +1,26 @@
 <div class="timeline">
-    <div class="action">
-        <div class="col-xs-6">
-        <select class="form-control" id="curMon" onchange="getDataByMon()">
-            <option value="2016-1-1">一月</option>
-            <option value="2016-2-1">二月</option>
-            <option value="2016-3-1">三月</option>
-            <option value="2016-4-1">四月</option>
-            <option value="2016-5-1">五月</option>
-            <option value="2016-6-1">六月</option>
-            <option value="2016-7-1">七月</option>
-            <option value="2016-8-1">八月</option>
-            <option value="2016-9-1">九月</option>
-            <option value="2016-10-1">十月</option>
-            <option value="2016-11-1">十一月</option>
-            <option value="2016-12-1">十二月</option>
-            <option value="all">全部</option>
-        </select>
-        </div>
-        <div class="col-xs-6">
-            <a href="/add" class="btn btn-success" type="submit">添加</a>
-        </div>
-    </div>
+    <!--<div class="action">-->
+        <!--<div class="col-xs-6">-->
+        <!--<select class="form-control" id="curMon" onchange="getDataByMon()">-->
+            <!--<option value="2016-1-1">一月</option>-->
+            <!--<option value="2016-2-1">二月</option>-->
+            <!--<option value="2016-3-1">三月</option>-->
+            <!--<option value="2016-4-1">四月</option>-->
+            <!--<option value="2016-5-1">五月</option>-->
+            <!--<option value="2016-6-1">六月</option>-->
+            <!--<option value="2016-7-1">七月</option>-->
+            <!--<option value="2016-8-1">八月</option>-->
+            <!--<option value="2016-9-1">九月</option>-->
+            <!--<option value="2016-10-1">十月</option>-->
+            <!--<option value="2016-11-1">十一月</option>-->
+            <!--<option value="2016-12-1">十二月</option>-->
+            <!--<option value="all">全部</option>-->
+        <!--</select>-->
+        <!--</div>-->
+        <!--<div class="col-xs-6">-->
+            <!--<a href="/add" class="btn btn-success" type="submit">添加</a>-->
+        <!--</div>-->
+    <!--</div>-->
     {{#each articles}}
         <div class="article">
             <a href="/detail/{{_id}}">
@@ -28,7 +28,7 @@
             <div class="title">{{title}}</div>
             <div class="pic"><img src="{{pic}}" alt=""/></div>
                 <div class="content">
-                    {{content}}
+                    {{{content}}}
                 </div>
             <div class="author">作者：{{author}}</div>
             </a>

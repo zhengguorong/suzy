@@ -39,6 +39,7 @@
         var file = document.getElementById("picFile").files[0];
         var title = $("#inputTitle").val();
         var content = $("#inputContent").val();
+        content = content.replace(/(\r\n|\n|\r)/gm, '<br>');
         var author = $("input[name='author']:checked").val();
         if(!content||!file){
             alert("请输入内容或者选择图片");
