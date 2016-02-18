@@ -1,3 +1,8 @@
+<div class="header">
+<div class="left"></div>
+<div class="title"></div>
+<div class="right"><a href="/add">+</a></div>
+</div>
 <div class="timeline">
     <!--<div class="action">-->
         <!--<div class="col-xs-6">-->
@@ -30,7 +35,14 @@
                 <div class="content">
                     {{{content}}}
                 </div>
-            <div class="author">作者：{{author}}</div>
+                <div style="overflow: hidden">
+                    <div class="author">作者：{{author}}</div>
+                    <div class="comment">
+                        <span><i class="glyphicon glyphicon-heart"></i>0</span>
+                        <span><i class="glyphicon glyphicon-comment"></i>{{commentCount}}</span></div>
+
+                </div>
+
             </a>
         </div>
     {{/each}}

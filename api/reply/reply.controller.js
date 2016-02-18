@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var Reply = require('./reply.model');
-var uuid = require('node-uuid');
-var fs = require('fs');
+var Counter = require('./counter.model');
+var Article = require('../article/article.model');
 var moment = require('moment');
 
 function handleError(res, statusCode) {
@@ -51,6 +51,7 @@ var controller={};
 controller.create = function(req,res){
     req.body.displayTime = moment().format("MMM DD,YYYY");
     req.body.createTime = new Date().getTime();
+    Article.findByIdAndUpdateAsync({_id: req.body.pId}, {$inc: { commentCount: 1} })
     Reply.createAsync(req.body)
         .then(responseWithResult(res, 201))
         .catch(handleError(res));

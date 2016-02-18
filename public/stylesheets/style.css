@@ -6,7 +6,31 @@ body {
   max-width: 640px;
 
 }
-
+.header{
+  height: 44px;
+  background: #35343c;
+  color: #fff;
+  line-height: 44px;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
+.header .left{
+  float: left;
+}
+.header .title{
+  float: left;
+}
+.header .right{
+  float: right;
+  color: #fff;
+  font-size: 25px;
+  width: 50px;
+  text-align: center;
+}
+.header .right a{
+  color: #fff;
+}
 a,a:hover{ text-decoration:none; color:#333}
 .warp{
   margin: 0 10px;
@@ -88,20 +112,24 @@ a,a:hover{ text-decoration:none; color:#333}
 .reply .action{
   display: none;
   position: absolute;
-  width: 130px;
+  width: 150px;
   height: 30px;
   margin: 10px 0 10px 0;
   background: #4c4f54;
-  left: -130px;
+  left: -160px;
   border-radius: 5px;
   color: #fff;
   line-height: 30px;
   font-size: 12px;
 }
+
 .reply .action span{
   width: 50%;
   text-align: center;
   display: inline-block;
+}
+.reply .action span i{
+  margin-right: 5px;
 }
 .reply img{
   width: 35px;
@@ -119,6 +147,7 @@ a,a:hover{ text-decoration:none; color:#333}
   overflow: hidden;
   padding: 20px 10px;
   min-height: 700px;
+  padding-top: 60px;
 }
 .timeline .action{
   margin-bottom: 20px;
@@ -165,6 +194,19 @@ a,a:hover{ text-decoration:none; color:#333}
   line-height: 24px;
   margin-top: 10px;
   font-family: "微软雅黑";
+  float: left;
+}
+.timeline .comment{
+  float: right;
+  line-height: 24px;
+  margin-top: 10px;
+}
+.timeline .comment i{
+  color: rgb(128,124,124);
+  margin-right: 5px;
+}
+.timeline .comment span{
+  margin-right: 10px;
 }
 .timeline img{
   width: 100%;

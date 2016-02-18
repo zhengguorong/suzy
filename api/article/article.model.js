@@ -9,5 +9,6 @@ var ArticleSchema = new mongoose.Schema({
     content:String,
     createTime:{ type: String, default: new Date().getTime() },
     displayTime:String,
+    commentCount:{ type: Number, default:0},
 })
 module.exports = mongoose.model('Article',ArticleSchema);

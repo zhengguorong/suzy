@@ -7,9 +7,9 @@ var Reply = require('../api/reply/reply.model');
 
 //前台渲染路由
 router.get('/',function(req,res,next){
-  Article.findAsync({},null,{sort: '-createTime'})
+  Article.findAsync({},null,{sort: '-createTime',limit:30})
       .then(function(data){
-        res.render('articlelist', { articles: data});
+          res.render('articlelist', { articles: data});
       })
 
 })

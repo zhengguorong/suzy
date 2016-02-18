@@ -8,11 +8,11 @@
         <!--<div class="swiper-pagination"></div>-->
     </div>
     <div class="author">{{author}} 作品</div>
-    <div class="reply" onclick="showAction()"><div class="action"><span onclick="good()" style="border-right: #3b3e43 1px solid">赞</span><span onclick="reply('{{_id}}')">评论</span></div><img src="/images/reply.png" alt=""/></div>
+    <div class="reply" onclick="showAction()"><div class="action"><span onclick="good()" style="border-right: #3b3e43 1px solid"><i class="glyphicon glyphicon-heart"></i>赞</span><span onclick="reply('{{_id}}')"><i class="glyphicon glyphicon-comment"></i>评论</span></div><img src="/images/reply.png" alt=""/></div>
     <div class="content-warp">
         <div class="date">
-            <div class="day">{{createTime}}</div>
-            <div class="month">{{createTime}}</div>
+            <div class="day" data-time="{{createTime}}"></div>
+            <div class="month" data-time="{{createTime}}"></div>
         </div>
         <div class="content"><div class="left"></div>{{{content}}}</div>
     </div>
@@ -20,8 +20,8 @@
 {{#each replies}}
     <div class="content-warp content-warp-right">
         <div class="date">
-            <div class="day">{{createTime}}</div>
-            <div class="month">{{createTime}}</div>
+            <div class="day" data-time="{{createTime}}"></div>
+            <div class="month" data-time="{{createTime}}"></div>
         </div>
         <div class="content"><div class="right"></div>{{{content}}}</div>
     </div>
@@ -36,10 +36,10 @@
         var days=$(".day");
         var month=$(".month");
         for(var i=0;i<days.length;i++){
-            $(days[i]).html(dateFormat($(days[i]).html(),"DD"));
+            $(days[i]).html(dateFormat($(days[i]).attr("data-time"),"DD"));
         }
         for(var j=0;j<month.length;j++){
-            $(month[j]).html(dateFormat($(month[j]).html(),"MMM,YYYY"));
+            $(month[j]).html(dateFormat($(month[j]).attr("data-time"),"MMM,YYYY"));
         }
 
     })
