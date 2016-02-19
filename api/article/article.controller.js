@@ -13,7 +13,9 @@ function handleError(res, statusCode) {
 
 function responseWithResult(res, statusCode) {
     statusCode = statusCode || 200;
+    console.log(statusCode)
     return function(entity) {
+        console.log(entity)
         if (entity) {
             res.status(statusCode).json(entity);
         }
@@ -34,7 +36,7 @@ function saveUpdates(updates) {
     return function(entity) {
         var updated = _.merge(entity, updates);
         return updated.saveAsync()
-                .spread(function(){return updated});
+                .spread(function(){console.log(updated);return updated});
 };
 }
 
@@ -86,6 +88,7 @@ controller.show = function(req, res) {
 
 // Updates an existing Thing in the DB
 controller.update = function(req, res) {
+    console.log(req.params.id)
     if (req.body._id) {
         delete req.body._id;
     }
