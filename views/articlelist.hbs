@@ -31,13 +31,18 @@
             <a href="/detail/{{_id}}">
             <div class="time">{{displayTime}}</div>
             <div class="title">{{title}}</div>
+                <div>
+                    <div class="author">{{author}}</div>
+                    <div class="createTime author" style="margin-left: 10px;" data-time="{{createTime}}"></div>
+
+                </div>
             <div class="pic"><img src="{{pic}}" alt=""/></div>
                 <div class="content">
                     {{{content}}}
                 </div>
                 <div style="overflow: hidden">
-                    <div class="author">作者：{{author}}</div>
-                    <div class="createTime author" style="margin-left: 10px;" data-time="{{createTime}}"></div>
+                    <!--<div class="author">{{author}}</div>-->
+                    <!--<div class="createTime author" style="margin-left: 10px;" data-time="{{createTime}}"></div>-->
                     <div class="comment">
                         {{#if like}}
                             <span ><i style="color: red" class="glyphicon glyphicon-heart"></i></span>
@@ -66,7 +71,7 @@
         }
         var createTime=$(".createTime");
         for(var i=0;i<createTime.length;i++){
-            $(createTime[i]).html("创建时间："+dateFormat($(createTime[i]).attr("data-time"),"MM-DD HH:mm"));
+            $(createTime[i]).html(dateFormat($(createTime[i]).attr("data-time"),"MM-DD HH:mm"));
         }
     })
 
