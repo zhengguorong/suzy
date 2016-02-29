@@ -37,6 +37,7 @@
                 </div>
                 <div style="overflow: hidden">
                     <div class="author">作者：{{author}}</div>
+                    <div class="createTime author" style="margin-left: 10px;" data-time="{{createTime}}"></div>
                     <div class="comment">
                         {{#if like}}
                             <span ><i style="color: red" class="glyphicon glyphicon-heart"></i></span>
@@ -50,13 +51,24 @@
     {{/each}}
 </div>
 <script>
-    function getDataByMon(){
-        var curSelected=$('#curMon option:selected').val();
-        if(curSelected=="all"){
-            location.href="/";
-            return;
+    $(function(){
+        function getDataByMon(){
+            var curSelected=$('#curMon option:selected').val();
+            if(curSelected=="all"){
+                location.href="/";
+                return;
+            }
+            location.href="/mon/"+curSelected;
         }
-        location.href="/mon/"+curSelected;
-    }
+        function dateFormat(date,opt){
+            var date=parseInt(date);
+            return moment(date).format(opt);
+        }
+        var createTime=$(".createTime");
+        for(var i=0;i<createTime.length;i++){
+            $(createTime[i]).html("创建时间："+dateFormat($(createTime[i]).attr("data-time"),"MM-DD HH:mm:ss"));
+        }
+    })
+
 </script>
 
