@@ -3,6 +3,7 @@ var Article = require('./article.model');
 var uuid = require('node-uuid');
 var fs = require('fs');
 var moment = require('moment');
+var Reply = require('../reply/reply.model');
 
 function handleError(res, statusCode) {
     statusCode = statusCode || 500;
@@ -13,9 +14,7 @@ function handleError(res, statusCode) {
 
 function responseWithResult(res, statusCode) {
     statusCode = statusCode || 200;
-    console.log(statusCode)
     return function(entity) {
-        console.log(entity)
         if (entity) {
             res.status(statusCode).json(entity);
         }
@@ -50,6 +49,26 @@ function removeEntity(res) {
 }
 
 var controller={};
+controller.getByDate = function(req,res){
+    var startTime = new Date(req.params.date).getTime();
+    var endTime = startTime+60*60*1000*24*31;
+    Article.findAsync({createTime:{"$gt":startTime,"$lte":endTime}})
+        .then(responseWithResult(res))
+        .catch(handleError(res));
+}
+controller.getDetail=function(req,res){
+    var result={}
+    Article.findByIdAsync(req.params.id)
+        .then(function(data){
+            result.article=data;
+            Reply.findAsync({pId:req.params.id})
+                .then(function(replies){
+                    result["replies"]=replies||[];
+                    res.send(result);
+
+                })
+        })
+}
 controller.create = function(req,res){
     //接收前台POST过来的base64
     var imgData = req.body.fileData;
@@ -74,7 +93,10 @@ controller.create = function(req,res){
 }
 // Gets a list of Articles
 controller.index = function(req, res) {
-    Article.findAsync()
+    var page = req.query.page||1;
+    var count = req.query.count||5;
+    var skip = (page-1)*count;
+    Article.findAsync({},null,{sort: '-createTime',skip:parseInt(skip),limit:parseInt(count)})
         .then(responseWithResult(res))
         .catch(handleError(res));
 }

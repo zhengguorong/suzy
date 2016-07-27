@@ -6,6 +6,8 @@ var controller = require('./article.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/mon/:date',controller.getByDate);
+router.get('/detail/:id',controller.getDetail);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
