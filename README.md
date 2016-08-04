@@ -18,7 +18,9 @@ npm run supervisor
 
 ## 效果截图
 
-![](http://test-10019075.cos.myqcloud.com/demo1.png =320x)
+<img src="http://test-10019075.cos.myqcloud.com/demo1.png" width="50%"  />
 
 
-![](http://test-10019075.cos.myqcloud.com/demo2.png =320x)
+<img src="http://test-10019075.cos.myqcloud.com/demo2.png" width="50%"  />
+
+
