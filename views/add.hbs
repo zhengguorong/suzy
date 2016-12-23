@@ -63,22 +63,58 @@
         }
         flag=false;
         lrz(file, {width: 640}, function (images) {
+//            $.ajax({
+//                type:"POST",
+//                url:"/api/article",
+//                data:{fileData: images.base64,fileName: images.origin.name,content:content,author:author,title:title},
+//                statusCode:{
+//                    201:function(result) {
+//                        alert("添加成功!");
+//                        location.href="/";
+//                    },
+//                    500:function(result){
+//                        alert("服务器异常");
+//                    }
+//                },
+//                complete:function(){
+//                    console.log("请求完成");
+//                    flag=true;
+//                }
+//            })
+            var source=images.base64.replace(/^data:image\/\w+;base64,/, "");
+            //图片上传
             $.ajax({
                 type:"POST",
-                url:"/api/article",
-                data:{fileData: images.base64,fileName: images.origin.name,content:content,author:author,title:title},
+                url:"http://localhost:8080/api/files",
+                contentType:"application/json",
+                data:JSON.stringify({source:source,fileName:images.origin.name}),
                 statusCode:{
                     201:function(result) {
-                        alert("添加成功!");
-                        location.href="/";
+//                        alert("添加成功!");
+                        $.ajax({
+                            type:"POST",
+                            url:"http://localhost:8080/api/articles",
+                            contentType:"application/json",
+                            data:JSON.stringify({
+                                "author": author,
+                                "commentCount": 0,
+                                "content": content,
+                                "displayTime": "",
+                                "good": true,
+                                "location": "",
+                                "pic": result.filePath,
+                                "title": title
+                            }),
+                            statusCode:{
+                                201:function(result){
+                                    console.log(result)
+                                }
+                            }
+                        })
                     },
                     500:function(result){
                         alert("服务器异常");
                     }
-                },
-                complete:function(){
-                    console.log("请求完成");
-                    flag=true;
                 }
             })
         });

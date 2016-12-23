@@ -110,15 +110,29 @@ controller.show = function(req, res) {
 
 // Updates an existing Thing in the DB
 controller.update = function(req, res) {
-    console.log(req.params.id)
+        //接收前台POST过来的base64
+    var imgData = req.body.fileData;
+    //过滤data:URL
+    var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+    var dataBuffer = new Buffer(base64Data, 'base64');
+    var fileName = uuid.v1()+".png";
+    var imagePath = "public/upload/"+fileName;
+    req.body.pic = "/upload/"+fileName;
     if (req.body._id) {
         delete req.body._id;
     }
-    Article.findByIdAsync(req.params.id)
+    fs.writeFile(imagePath, dataBuffer, function(err) {
+        if(err){
+            res.send(err);
+        }else{
+        Article.findByIdAsync(req.params.id)
         .then(handleEntityNotFound(res))
         .then(saveUpdates(req.body))
         .then(responseWithResult(res))
         .catch(handleError(res));
+        }
+    })
+
 }
 
 // Deletes a Thing from the DB
