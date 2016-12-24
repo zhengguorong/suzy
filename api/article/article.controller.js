@@ -100,6 +100,15 @@ controller.index = function (req, res) {
         .then(responseWithResult(res))
         .catch(handleError(res));
 }
+
+controller.like = function (req, res) {
+    var page = req.query.page || 1;
+    var count = req.query.count || 5;
+    var skip = (page - 1) * count;
+    Article.findAsync({like:1}, null, { sort: '-createTime',  skip: parseInt(skip), limit: parseInt(count) })
+        .then(responseWithResult(res))
+        .catch(handleError(res));
+}
 // Gets a single Thing from the DB
 controller.show = function (req, res) {
     Article.findByIdAsync(req.params.id)
@@ -112,6 +121,9 @@ controller.show = function (req, res) {
 controller.update = function (req, res) {
     //接收前台POST过来的base64
     var imgData = req.body.fileData;
+    if (req.body._id) {
+        delete req.body._id;
+    }
     if (imgData) {
         //过滤data:URL
         var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
@@ -119,9 +131,6 @@ controller.update = function (req, res) {
         var fileName = uuid.v1() + ".png";
         var imagePath = "public/upload/" + fileName;
         req.body.pic = "/upload/" + fileName;
-        if (req.body._id) {
-            delete req.body._id;
-        }
         fs.writeFile(imagePath, dataBuffer, function (err) {
             if (err) {
                 res.send(err);
@@ -140,9 +149,6 @@ controller.update = function (req, res) {
             .then(responseWithResult(res))
             .catch(handleError(res));
     }
-}
-
-
 }
 
 // Deletes a Thing from the DB
