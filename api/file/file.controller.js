@@ -11,7 +11,12 @@ controller.upload = function (req, res) {
     if (err) {
       res.send(500, 'parse error: ' + err);
     } else {
-      res.status(200).send(files);
+      if(files.file && files.file.length > 0) {
+        for(var i = 0; i < files.file.length; i++) {
+          files.file[i].path = files.file[i].path.replace('public', '');
+        }
+      }
+      res.status(200).json(files);
     }
   })
 }

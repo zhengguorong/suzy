@@ -96,7 +96,6 @@ controller.create = function (req, res) {
  * 微信端创建文章
  */
 controller.wechat = function (req, res) {
-    req.body.pic = req.body.pic.replace('public', '');
     req.body.displayTime = moment().format("MMM DD,YYYY");
     req.body.createTime = new Date().getTime();
     Article.createAsync(req.body)
