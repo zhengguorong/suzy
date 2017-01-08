@@ -11,6 +11,7 @@ router.get('/mon/:date',controller.getByDate);
 router.get('/detail/:id',controller.getDetail);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
+router.post('/wechat', controller.wechat)
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);

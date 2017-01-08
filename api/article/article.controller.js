@@ -91,6 +91,17 @@ controller.create = function (req, res) {
     });
 
 }
+
+/**
+ * 微信端创建文章
+ */
+controller.wechat = function (req, res) {
+    req.body.displayTime = moment().format("MMM DD,YYYY");
+    req.body.createTime = new Date().getTime();
+    Article.createAsync(req.body)
+        .then(responseWithResult(res, 201))
+        .catch(handleError(res));
+}
 // Gets a list of Articles
 controller.index = function (req, res) {
     var page = req.query.page || 1;
@@ -105,7 +116,7 @@ controller.like = function (req, res) {
     var page = req.query.page || 1;
     var count = req.query.count || 5;
     var skip = (page - 1) * count;
-    Article.findAsync({like:1}, null, { sort: '-createTime',  skip: parseInt(skip), limit: parseInt(count) })
+    Article.findAsync({ like: 1 }, null, { sort: '-createTime', skip: parseInt(skip), limit: parseInt(count) })
         .then(responseWithResult(res))
         .catch(handleError(res));
 }
