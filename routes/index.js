@@ -41,4 +41,6 @@ router.get('/reply/:id',function(req,res,next){
 router.use('/api/article',require('../api/article'));
 router.use('/api/reply',require('../api/reply'));
 
+router.use('/file', require('../api/file'));
+
 module.exports = router;
