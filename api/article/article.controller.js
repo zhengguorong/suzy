@@ -146,17 +146,13 @@ controller.update = function (req, res) {
             if (err) {
                 res.send(err);
             } else {
-                Article.findByIdAsync(req.params.id)
-                    .then(handleEntityNotFound(res))
-                    .then(saveUpdates(req.body))
+                Article.findOneAndUpdate({_id: req.params.id}, req.body, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
                     .then(responseWithResult(res))
                     .catch(handleError(res));
             }
         })
     } else {
-        Article.findByIdAsync(req.params.id)
-            .then(handleEntityNotFound(res))
-            .then(saveUpdates(req.body))
+        Article.findOneAndUpdate({_id: req.params.id}, req.body, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
             .then(responseWithResult(res))
             .catch(handleError(res));
     }
