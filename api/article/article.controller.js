@@ -72,24 +72,29 @@ controller.getDetail = function (req, res) {
 controller.create = function (req, res) {
     //接收前台POST过来的base64
     var imgData = req.body.fileData;
-    //过滤data:URL
-    var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
-    var dataBuffer = new Buffer(base64Data, 'base64');
-    var fileName = uuid.v1() + ".png";
-    var imagePath = "public/upload/" + fileName;
-    req.body.pic = "/upload/" + fileName;
     req.body.displayTime = moment().format("MMM DD,YYYY");
     req.body.createTime = new Date().getTime();
-    fs.writeFile(imagePath, dataBuffer, function (err) {
-        if (err) {
-            res.send(err);
-        } else {
-            Article.createAsync(req.body)
-                .then(responseWithResult(res, 201))
-                .catch(handleError(res));
-        }
-    });
-
+    if (imgData) {
+        //过滤data:URL
+        var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+        var dataBuffer = new Buffer(base64Data, 'base64');
+        var fileName = uuid.v1() + ".png";
+        var imagePath = "public/upload/" + fileName;
+        req.body.pic = "/upload/" + fileName;
+        fs.writeFile(imagePath, dataBuffer, function (err) {
+            if (err) {
+                res.send(err);
+            } else {
+                Article.createAsync(req.body)
+                    .then(responseWithResult(res, 201))
+                    .catch(handleError(res));
+            }
+        });
+    } else {
+        Article.createAsync(req.body)
+            .then(responseWithResult(res, 201))
+            .catch(handleError(res));
+    }
 }
 
 /**
@@ -146,13 +151,13 @@ controller.update = function (req, res) {
             if (err) {
                 res.send(err);
             } else {
-                Article.findOneAndUpdate({_id: req.params.id}, req.body, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+                Article.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: true, setDefaultsOnInsert: true, runValidators: true }).exec()
                     .then(responseWithResult(res))
                     .catch(handleError(res));
             }
         })
     } else {
-        Article.findOneAndUpdate({_id: req.params.id}, req.body, {upsert: true, setDefaultsOnInsert: true, runValidators: true}).exec()
+        Article.findOneAndUpdate({ _id: req.params.id }, req.body, { upsert: true, setDefaultsOnInsert: true, runValidators: true }).exec()
             .then(responseWithResult(res))
             .catch(handleError(res));
     }
